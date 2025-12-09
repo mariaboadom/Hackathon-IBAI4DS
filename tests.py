@@ -31,7 +31,7 @@ def test_gemini_call_with_tool():
     test_prompt = "Holaa, que tal?"
     
     # Llamar a la función
-    result = gemini_api_call(tools=[deploy_app, migrate_app, stop_app], prompt=test_prompt)
+    result = gemini_api_call(tools_list=[deploy_app, migrate_app, stop_app], prompt=test_prompt)
     
     # Verificar estructura de la respuesta
     if result["function"] == []:

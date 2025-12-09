@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
     # Import the other functions from this file
     try:
-        from hackathon_functions import task_call_gemini, task_generate_context_prompt, task_process_function_calls
+        from hackathon_functions import task_call_gemini, task_generate_context_prompt, task_process_function_calls, task_select_nodes_with_resources
     except ImportError:
         print("Error importing functions from hackathon_functions.py. Please ensure the file exists and contains the required functions.")
         exit(1)
@@ -94,7 +94,7 @@ if __name__ == "__main__":
         queries = [item["query"] for item in test_queries_dataset[test_i]]
 
         ###################################### TASK: GENERATE CONTEXT PROMPT ################################################
-        context_prompt = task_generate_context_prompt(apps_dataset, scenarios_dataset, test_queries_dataset, functions, test_i)
+        context_prompt = task_generate_context_prompt(apps_dataset, scenarios_dataset, functions, test_i)
         ####################################### END TASK: GENERATE CONTEXT PROMPT ################################################
         
         #---------------------------- QUERIES LOOP: PROCESS EACH USER QUERY ------------------#
