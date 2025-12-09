@@ -1,7 +1,7 @@
 import pytest
 import os
 import dotenv
-from hackathon_functions import gemini_call
+from hackathon_functions import gemini_api_call
 import json
 from hackathon_functions import KPIS_PREFERENCES, KPIS_ORDER_OPERAND
 
@@ -31,7 +31,7 @@ def test_gemini_call_with_tool():
     test_prompt = "Holaa, que tal?"
     
     # Llamar a la función
-    result = gemini_call(tools=[deploy_app, migrate_app, stop_app], prompt=test_prompt)
+    result = gemini_api_call(tools=[deploy_app, migrate_app, stop_app], prompt=test_prompt)
     
     # Verificar estructura de la respuesta
     if result["function"] == []:
