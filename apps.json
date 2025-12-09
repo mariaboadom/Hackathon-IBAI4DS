@@ -1,0 +1,254 @@
+{
+  "V2X City Navigator": {
+    "app_id": "app1",
+    "category_5G": "uRLLC",
+    "description": "Aplicación de vehículo autónomo que requiere comunicación V2X (vehículo a todo) para la navegación y seguridad en tiempo real en entornos urbanos complejos.",
+    "min_requirements": {
+      "cpu_cores": 64,
+      "ram_gb": 16
+    }
+  },
+  "AR Industrial Assist": {
+    "app_id": "app2",
+    "category_5G": "eMBB",
+    "description": "Aplicación de realidad aumentada que asiste a los técnicos de mantenimiento industrial proporcionando información en tiempo real sobre equipos y procedimientos.",
+    "min_requirements": {
+      "cpu_cores": 32,
+      "ram_gb": 128
+    }
+  },
+  "IoT Museum Guard": {
+    "app_id": "app3",
+    "category_5G": "mMTC",
+    "description": "Aplicación de IoT para la monitorización y gestión de museos, incluyendo sensores ambientales y de seguridad.",
+    "min_requirements": {
+      "cpu_cores": 8,
+      "ram_gb": 16
+    }
+  },
+  "TeleSurg Haptic Link": {
+    "app_id": "app4",
+    "category_5G": "uRLLC",
+    "description": "Sistema de cirugía robótica remota que transmite vídeo 4K y feedback háptico (tacto) al cirujano para garantizar la precisión quirúrgica.",
+    "min_requirements": {
+      "cpu_cores": 128,
+      "ram_gb": 64
+    }
+  },
+  "Immersive Stadium VR": {
+    "app_id": "app5",
+    "category_5G": "eMBB",
+    "description": "Plataforma de streaming volumétrico que permite a los usuarios en casa ver eventos deportivos desde cualquier ángulo en realidad virtual 8K en tiempo real.",
+    "min_requirements": {
+      "cpu_cores": 48,
+      "ram_gb": 256
+    }
+  },
+  "AgriSmart Sensor Grid": {
+    "app_id": "app6",
+    "category_5G": "mMTC",
+    "description": "Red de monitoreo agrícola que agrega datos de miles de sensores de humedad, temperatura y nutrientes del suelo distribuidos en grandes hectáreas de cultivo.",
+    "min_requirements": {
+      "cpu_cores": 4,
+      "ram_gb": 8
+    }
+  },
+  "Smart Grid Balancer": {
+    "app_id": "app7",
+    "category_5G": "uRLLC",
+    "description": "Algoritmo de control para redes eléctricas inteligentes que detecta fallos y redistribuye la carga energética en milisegundos para evitar apagones en cascada.",
+    "min_requirements": {
+      "cpu_cores": 96,
+      "ram_gb": 32
+    }
+  },
+  "HoloConference Enterprise": {
+    "app_id": "app8",
+    "category_5G": "eMBB",
+    "description": "Sistema de telepresencia holográfica para reuniones corporativas, proyectando avatares 3D fotorrealistas de los participantes en tiempo real.",
+    "min_requirements": {
+      "cpu_cores": 64,
+      "ram_gb": 128
+    }
+  },
+  "Logistics Asset Tracker": {
+    "app_id": "app9",
+    "category_5G": "mMTC",
+    "description": "Sistema de seguimiento de activos para puertos marítimos capaces de conectar y localizar más de 100,000 contenedores simultáneamente con bajo consumo energético.",
+    "min_requirements": {
+      "cpu_cores": 16,
+      "ram_gb": 32
+    }
+  },
+  "Cloud Gaming Pro": {
+    "app_id": "app10",
+    "category_5G": "eMBB",
+    "description": "Servicio de renderizado de videojuegos AAA en la nube, transmitiendo a 4K/120fps a dispositivos móviles sin necesidad de consola local.",
+    "min_requirements": {
+      "cpu_cores": 64,
+      "ram_gb": 128
+    }
+  },
+  "Smart Traffic Lights": {
+    "app_id": "app11",
+    "category_5G": "uRLLC",
+    "description": "Sistema de gestión de tráfico que ajusta los semáforos en milisegundos basándose en el flujo vehicular y prioriza ambulancias automáticamente.",
+    "min_requirements": {
+      "cpu_cores": 32,
+      "ram_gb": 16
+    }
+  },
+  "Forest Fire Sentinel": {
+    "app_id": "app12",
+    "category_5G": "mMTC",
+    "description": "Red de sensores de bajo consumo desplegados en bosques para detectar humo y cambios térmicos, reportando a una central unificada.",
+    "min_requirements": {
+      "cpu_cores": 8,
+      "ram_gb": 16
+    }
+  },
+  "Remote Mining Ops": {
+    "app_id": "app13",
+    "category_5G": "uRLLC",
+    "description": "Control remoto de maquinaria pesada de excavación en minas peligrosas.",
+    "min_requirements": {
+      "cpu_cores": 96,
+      "ram_gb": 64
+    }
+  },
+  "4K Drone Patrol": {
+    "app_id": "app14",
+    "category_5G": "eMBB",
+    "description": "Flota de drones de seguridad que transmiten múltiples flujos de video de ultra alta definición simultáneamente para reconocimiento facial en tiempo real.",
+    "min_requirements": {
+      "cpu_cores": 48,
+      "ram_gb": 256
+    }
+  },
+  "Smart Water Metering": {
+    "app_id": "app15",
+    "category_5G": "mMTC",
+    "description": "Lectura automática de contadores de agua residenciales, detectando fugas y patrones de consumo anómalos en toda una ciudad.",
+    "min_requirements": {
+      "cpu_cores": 12,
+      "ram_gb": 32
+    }
+  },
+  "Factory Digital Twin": {
+    "app_id": "app16",
+    "category_5G": "eMBB",
+    "description": "Réplica virtual exacta de una planta de fabricación que se actualiza en tiempo real con datos visuales y de sensores para mantenimiento predictivo.",
+    "min_requirements": {
+      "cpu_cores": 128,
+      "ram_gb": 512
+    }
+  },
+  "Haptic Education Lab": {
+    "app_id": "app17",
+    "category_5G": "uRLLC",
+    "description": "Plataforma educativa donde estudiantes de mecánica sienten la resistencia de materiales virtuales a través de guantes hápticos conectados.",
+    "min_requirements": {
+      "cpu_cores": 48,
+      "ram_gb": 32
+    }
+  },
+  "BioHealth Patch Net": {
+    "app_id": "app18",
+    "category_5G": "mMTC",
+    "description": "Sistema hospitalario que monitorea parches biométricos desechables en cientos de pacientes para seguimiento de constantes vitales básicas.",
+    "min_requirements": {
+      "cpu_cores": 16,
+      "ram_gb": 64
+    }
+  },
+  "Autonomous Truck Convoy": {
+    "app_id": "app19",
+    "category_5G": "uRLLC",
+    "description": "Sistema de 'platooning' donde camiones autónomos viajan muy pegados para ahorrar combustible, sincronizando frenos y dirección instantáneamente.",
+    "min_requirements": {
+      "cpu_cores": 64,
+      "ram_gb": 32
+    }
+  },
+  "My ARchitectural Tour": {
+    "app_id": "app20",
+    "category_5G": "eMBB",
+    "description": "Experiencia turística que combina realidad virtual y realidad aumentada que superpone reconstrucciones históricas 3D sobre ruinas antiguas mientras el usuario camina.",
+    "min_requirements": {
+      "cpu_cores": 32,
+      "ram_gb": 128
+    }
+  },
+  "Waste Bin Optimizer": {
+    "app_id": "app21",
+    "category_5G": "mMTC",
+    "description": "Sensores en contenedores de basura urbanos que avisan a los camiones de recogida solo cuando están llenos, optimizando rutas.",
+    "min_requirements": {
+      "cpu_cores": 8,
+      "ram_gb": 16
+    }
+  },
+  "Tactile Internet Rehab": {
+    "app_id": "app22",
+    "category_5G": "uRLLC",
+    "description": "Rehabilitación física remota donde un terapeuta guía los movimientos de un paciente mediante exoesqueletos sincronizados.",
+    "min_requirements": {
+      "cpu_cores": 64,
+      "ram_gb": 64
+    }
+  },
+  "Smart Grid Frequency": {
+    "app_id": "app23",
+    "category_5G": "uRLLC",
+    "description": "Control automatizado de subestaciones eléctricas para mantener la frecuencia de la red estable ante fluctuaciones de energías renovables.",
+    "min_requirements": {
+      "cpu_cores": 128,
+      "ram_gb": 32
+    }
+  },
+  "Live Concert 360": {
+    "app_id": "app24",
+    "category_5G": "eMBB",
+    "description": "Transmisión de eventos musicales con múltiples cámaras 8K seleccionables por el usuario para una experiencia inmersiva en casa.",
+    "min_requirements": {
+      "cpu_cores": 48,
+      "ram_gb": 192
+    }
+  },
+  "Structural Bridge Mon": {
+    "app_id": "app25",
+    "category_5G": "mMTC",
+    "description": "Miles de sensores de vibración y tensión instalados en infraestructuras críticas para detectar fatiga de materiales a largo plazo.",
+    "min_requirements": {
+      "cpu_cores": 16,
+      "ram_gb": 32
+    }
+  },
+  "Drone Delivery Net": {
+    "app_id": "app26",
+    "category_5G": "uRLLC",
+    "description": "Sistema de coordinación de tráfico aéreo para drones de reparto de última milla en entornos urbanos densos para evitar colisiones.",
+    "min_requirements": {
+      "cpu_cores": 96,
+      "ram_gb": 128
+    }
+  },
+  "Mobile Edge AI Cam": {
+    "app_id": "app27",
+    "category_5G": "eMBB",
+    "description": "Cámaras de seguridad ciudadana que envían vídeo a nodos 5G cercanos para análisis de comportamiento sospechoso mediante IA.",
+    "min_requirements": {
+      "cpu_cores": 64,
+      "ram_gb": 256
+    }
+  },
+  "Smart Parking Spot": {
+    "app_id": "app28",
+    "category_5G": "mMTC",
+    "description": "Sensores de suelo en cada plaza de aparcamiento de una ciudad que guían a los conductores a espacios libres vía app.",
+    "min_requirements": {
+      "cpu_cores": 8,
+      "ram_gb": 16
+    }
+  }
+}

@@ -1,0 +1,695 @@
+{
+    "test1": [
+        {
+            "node_id": "node_mad",
+            "zone": "Madrid",
+            "server_capabilities": {
+                "cpu_cores": 128,
+                "ram_gb": 512
+            },
+            "server_kpis": {
+                "latency_ms": 2,
+                "throughput_mbps": 8000,
+                "availability_percent": 99.999,
+                "packet_loss_percent": 0.001,
+                "connection_density": 50000,
+                "energy_efficiency": 0.5
+            },
+            "server_current_usage": {
+                "apps": ["Smart Traffic Lights", "HoloConference Enterprise"],
+                "cpu_cores": 96,
+                "ram_gb": 144
+            }
+        },
+        {
+            "node_id": "node_bcn",
+            "zone": "Barcelona",
+            "server_capabilities": {
+                "cpu_cores": 96,
+                "ram_gb": 256
+            },
+            "server_kpis": {
+                "latency_ms": 5,
+                "throughput_mbps": 2000,
+                "availability_percent": 99.9,
+                "packet_loss_percent": 0.05,
+                "connection_density": 1000000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {
+                "apps": ["AgriSmart Sensor Grid"],
+                "cpu_cores": 4,
+                "ram_gb": 8
+            }
+        },
+        {
+            "node_id": "node_vlc",
+            "zone": "Valencia",
+            "server_capabilities": {
+                "cpu_cores": 160,
+                "ram_gb": 1024
+            },
+            "server_kpis": {
+                "latency_ms": 15,
+                "throughput_mbps": 4000,
+                "availability_percent": 99.5,
+                "packet_loss_percent": 0.1,
+                "connection_density": 20000,
+                "energy_efficiency": 0.5
+            },
+            "server_current_usage": {
+                "apps": ["Cloud Gaming Pro"],
+                "cpu_cores": 64,
+                "ram_gb": 128
+            }
+        },
+        {
+            "node_id": "node_sev",
+            "zone": "Sevilla",
+            "server_capabilities": {
+                "cpu_cores": 64,
+                "ram_gb": 128
+            },
+            "server_kpis": {
+                "latency_ms": 25,
+                "throughput_mbps": 500,
+                "availability_percent": 99.0,
+                "packet_loss_percent": 0.2,
+                "connection_density": 10000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {}
+        },
+        {
+            "node_id": "node_bil",
+            "zone": "Bilbao",
+            "server_capabilities": {
+                "cpu_cores": 128,
+                "ram_gb": 512
+            },
+            "server_kpis": {
+                "latency_ms": 8,
+                "throughput_mbps": 1500,
+                "availability_percent": 99.9,
+                "packet_loss_percent": 0.05,
+                "connection_density": 30000,
+                "energy_efficiency": 0.5
+            },
+            "server_current_usage": {
+                "apps":["IoT Museum Guard"],
+                "cpu_cores": 8,
+                "ram_gb": 16
+            }
+        },
+        {
+            "node_id": "node_cor",
+            "zone": "Coruña",
+            "server_capabilities": {
+                "cpu_cores": 192,
+                "ram_gb": 2048
+            },
+            "server_kpis": {
+                "latency_ms": 35,
+                "throughput_mbps": 1000,
+                "availability_percent": 98.5,
+                "packet_loss_percent": 0.5,
+                "connection_density": 10000,
+                "energy_efficiency": 0
+            },
+            "server_current_usage": {}
+        },
+        {
+            "node_id": "node_can",
+            "zone": "Canarias",
+            "server_capabilities": {
+                "cpu_cores": 144,
+                "ram_gb": 768
+            },
+            "server_kpis": {
+                "latency_ms": 50,
+                "throughput_mbps": 800,
+                "availability_percent": 99.0,
+                "packet_loss_percent": 0.1,
+                "connection_density": 5000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {}
+        }
+    ],
+    "test2": [
+        {
+            "node_id": "node_mad",
+            "zone": "Madrid",
+            "server_capabilities": {
+                "cpu_cores": 128,
+                "ram_gb": 512
+            },
+            "server_kpis": {
+                "latency_ms": 2,
+                "throughput_mbps": 5000,
+                "availability_percent": 99.99,
+                "packet_loss_percent": 0.01,
+                "connection_density": 50000,
+                "energy_efficiency": 0.5
+            },
+            "server_current_usage": {
+                "apps": ["Factory Digital Twin"],
+                "cpu_cores": 128,
+                "ram_gb": 512
+            }
+        },
+        {
+            "node_id": "node_bcn",
+            "zone": "Barcelona",
+            "server_capabilities": {
+                "cpu_cores": 96,
+                "ram_gb": 256
+            },
+            "server_kpis": {
+                "latency_ms": 5,
+                "throughput_mbps": 2000,
+                "availability_percent": 99.9,
+                "packet_loss_percent": 0.02,
+                "connection_density": 100000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {
+                "apps": ["Immersive Stadium VR"],
+                "cpu_cores": 48,
+                "ram_gb": 256
+            }
+        },
+        {
+            "node_id": "node_vlc",
+            "zone": "Valencia",
+            "server_capabilities": {
+                "cpu_cores": 160,
+                "ram_gb": 1024
+            },
+            "server_kpis": {
+                "latency_ms": 10,
+                "throughput_mbps": 4000,
+                "availability_percent": 99.9,
+                "packet_loss_percent": 0.05,
+                "connection_density": 40000,
+                "energy_efficiency": 0.5
+            },
+            "server_current_usage": {
+                "apps": ["Live Concert 360", "Cloud Gaming Pro"],
+                "cpu_cores": 112,
+                "ram_gb": 320
+            }
+        },
+        {
+            "node_id": "node_sev",
+            "zone": "Sevilla",
+            "server_capabilities": {
+                "cpu_cores": 64,
+                "ram_gb": 128
+            },
+            "server_kpis": {
+                "latency_ms": 20,
+                "throughput_mbps": 600,
+                "availability_percent": 99.5,
+                "packet_loss_percent": 0.1,
+                "connection_density": 10000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {
+                "apps": ["BioHealth Patch Net"],
+                "cpu_cores": 16,
+                "ram_gb": 64
+            }
+        },
+        {
+            "node_id": "node_bil",
+            "zone": "Bilbao",
+            "server_capabilities": {
+                "cpu_cores": 128,
+                "ram_gb": 512
+            },
+            "server_kpis": {
+                "latency_ms": 8,
+                "throughput_mbps": 1200,
+                "availability_percent": 99.9,
+                "packet_loss_percent": 0.03,
+                "connection_density": 20000,
+                "energy_efficiency": 0.5
+            },
+            "server_current_usage": {}
+        },
+        {
+            "node_id": "node_cor",
+            "zone": "Coruña",
+            "server_capabilities": {
+                "cpu_cores": 192,
+                "ram_gb": 2048
+            },
+            "server_kpis": {
+                "latency_ms": 15,
+                "throughput_mbps": 2500,
+                "availability_percent": 99.0,
+                "packet_loss_percent": 0.1,
+                "connection_density": 30000,
+                "energy_efficiency": 0
+            },
+            "server_current_usage": {}
+        },
+        {
+            "node_id": "node_can",
+            "zone": "Canarias",
+            "server_capabilities": {
+                "cpu_cores": 144,
+                "ram_gb": 768
+            },
+            "server_kpis": {
+                "latency_ms": 40,
+                "throughput_mbps": 900,
+                "availability_percent": 99.0,
+                "packet_loss_percent": 0.2,
+                "connection_density": 5000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {
+                "apps": ["Waste Bin Optimizer", "Cloud Gaming Pro"],
+                "cpu_cores": 72,
+                "ram_gb": 144
+            }
+        }
+    ],
+    "test3": [
+        {
+            "node_id": "node_mad",
+            "zone": "Madrid",
+            "server_capabilities": {
+                "cpu_cores": 128,
+                "ram_gb": 512
+            },
+            "server_kpis": {
+                "latency_ms": 1,
+                "throughput_mbps": 6000,
+                "availability_percent": 99.9999,
+                "packet_loss_percent": 0.0,
+                "connection_density": 20000,
+                "energy_efficiency": 0.5
+            },
+            "server_current_usage": {
+                "apps": ["TeleSurg Haptic Link"],
+                "cpu_cores": 128,
+                "ram_gb": 64
+            }
+        },
+        {
+            "node_id": "node_bcn",
+            "zone": "Barcelona",
+            "server_capabilities": {
+                "cpu_cores": 96,
+                "ram_gb": 256
+            },
+            "server_kpis": {
+                "latency_ms": 4,
+                "throughput_mbps": 2500,
+                "availability_percent": 99.95,
+                "packet_loss_percent": 0.01,
+                "connection_density": 80000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {
+                "apps": ["Remote Ultrasound"],
+                "cpu_cores": 64,
+                "ram_gb": 64
+            }
+        },
+        {
+            "node_id": "node_vlc",
+            "zone": "Valencia",
+            "server_capabilities": {
+                "cpu_cores": 160,
+                "ram_gb": 1024
+            },
+            "server_kpis": {
+                "latency_ms": 45,
+                "throughput_mbps": 100,
+                "availability_percent": 95.0,
+                "packet_loss_percent": 5.0,
+                "connection_density": 5000,
+                "energy_efficiency": 0
+            },
+            "server_current_usage": {
+                "apps": ["V2X City Navigator", "Smart Grid Balancer"],
+                "cpu_cores": 160,
+                "ram_gb": 48
+            }
+        },
+        {
+            "node_id": "node_sev",
+            "zone": "Sevilla",
+            "server_capabilities": {
+                "cpu_cores": 64,
+                "ram_gb": 128
+            },
+            "server_kpis": {
+                "latency_ms": 18,
+                "throughput_mbps": 400,
+                "availability_percent": 99.0,
+                "packet_loss_percent": 0.2,
+                "connection_density": 10000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {}
+        },
+        {
+            "node_id": "node_bil",
+            "zone": "Bilbao",
+            "server_capabilities": {
+                "cpu_cores": 128,
+                "ram_gb": 512
+            },
+            "server_kpis": {
+                "latency_ms": 12,
+                "throughput_mbps": 1400,
+                "availability_percent": 99.9,
+                "packet_loss_percent": 0.05,
+                "connection_density": 25000,
+                "energy_efficiency": 0.5
+            },
+            "server_current_usage": {
+                "apps": ["Structural Bridge Mon"],
+                "cpu_cores": 16,
+                "ram_gb": 32
+            }
+        },
+        {
+            "node_id": "node_cor",
+            "zone": "Coruña",
+            "server_capabilities": {
+                "cpu_cores": 192,
+                "ram_gb": 2048
+            },
+            "server_kpis": {
+                "latency_ms": 14,
+                "throughput_mbps": 2200,
+                "availability_percent": 99.2,
+                "packet_loss_percent": 0.1,
+                "connection_density": 40000,
+                "energy_efficiency": 0
+            },
+            "server_current_usage": {
+                "apps": ["4K Drone Patrol"],
+                "cpu_cores": 48,
+                "ram_gb": 256
+            }
+        },
+        {
+            "node_id": "node_can",
+            "zone": "Canarias",
+            "server_capabilities": {
+                "cpu_cores": 144,
+                "ram_gb": 768
+            },
+            "server_kpis": {
+                "latency_ms": 60,
+                "throughput_mbps": 500,
+                "availability_percent": 98.0,
+                "packet_loss_percent": 1.0,
+                "connection_density": 2000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {}
+        }
+    ],
+    "test4": [
+        {
+            "node_id": "node_mad",
+            "zone": "Madrid",
+            "server_capabilities": {
+                "cpu_cores": 128,
+                "ram_gb": 512
+            },
+            "server_kpis": {
+                "latency_ms": 5,
+                "throughput_mbps": 4000,
+                "availability_percent": 100,
+                "packet_loss_percent": 0.02,
+                "connection_density": 60000,
+                "energy_efficiency": 0.5
+            },
+            "server_current_usage": {
+                "apps": ["Inferno AR Visor"],
+                "cpu_cores": 32,
+                "ram_gb": 64
+            }
+        },
+        {
+            "node_id": "node_bcn",
+            "zone": "Barcelona",
+            "server_capabilities": {
+                "cpu_cores": 96,
+                "ram_gb": 256
+            },
+            "server_kpis": {
+                "latency_ms": 10,
+                "throughput_mbps": 1000,
+                "availability_percent": 99.5,
+                "packet_loss_percent": 0.1,
+                "connection_density": 2000000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {
+                "apps": ["Smart Water Metering"],
+                "cpu_cores": 12,
+                "ram_gb": 32
+            }
+        },
+        {
+            "node_id": "node_vlc",
+            "zone": "Valencia",
+            "server_capabilities": {
+                "cpu_cores": 160,
+                "ram_gb": 1024
+            },
+            "server_kpis": {
+                "latency_ms": 12,
+                "throughput_mbps": 3500,
+                "availability_percent": 99.8,
+                "packet_loss_percent": 0.05,
+                "connection_density": 30000,
+                "energy_efficiency": 0.5
+            },
+            "server_current_usage": {}
+        },
+        {
+            "node_id": "node_sev",
+            "zone": "Sevilla",
+            "server_capabilities": {
+                "cpu_cores": 64,
+                "ram_gb": 128
+            },
+            "server_kpis": {
+                "latency_ms": 25,
+                "throughput_mbps": 400,
+                "availability_percent": 99.0,
+                "packet_loss_percent": 0.3,
+                "connection_density": 150000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {
+                "apps": ["Waste Bin Optimizer"],
+                "cpu_cores": 8,
+                "ram_gb": 16
+            }
+        },
+        {
+            "node_id": "node_bil",
+            "zone": "Bilbao",
+            "server_capabilities": {
+                "cpu_cores": 128,
+                "ram_gb": 512
+            },
+            "server_kpis": {
+                "latency_ms": 10,
+                "throughput_mbps": 1600,
+                "availability_percent": 99.9,
+                "packet_loss_percent": 0.04,
+                "connection_density": 40000,
+                "energy_efficiency": 0.5
+            },
+            "server_current_usage": {
+                "apps": ["AgriSmart Sensor Grid"],
+                "cpu_cores": 4,
+                "ram_gb": 8
+            }
+        },
+        {
+            "node_id": "node_cor",
+            "zone": "Coruña",
+            "server_capabilities": {
+                "cpu_cores": 192,
+                "ram_gb": 2048
+            },
+            "server_kpis": {
+                "latency_ms": 20,
+                "throughput_mbps": 1800,
+                "availability_percent": 99.0,
+                "packet_loss_percent": 0.2,
+                "connection_density": 20000,
+                "energy_efficiency": 0
+            },
+            "server_current_usage": {}
+        },
+        {
+            "node_id": "node_can",
+            "zone": "Canarias",
+            "server_capabilities": {
+                "cpu_cores": 144,
+                "ram_gb": 768
+            },
+            "server_kpis": {
+                "latency_ms": 30,
+                "throughput_mbps": 1000,
+                "availability_percent": 99.5,
+                "packet_loss_percent": 0.1,
+                "connection_density": 500000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {}
+        }
+    ],
+    "test5": [
+        {
+            "node_id": "node_mad",
+            "zone": "Madrid",
+            "server_capabilities": {
+                "cpu_cores": 128,
+                "ram_gb": 512
+            },
+            "server_kpis": {
+                "latency_ms": 25,
+                "throughput_mbps": 800,
+                "availability_percent": 99.0,
+                "packet_loss_percent": 0.5,
+                "connection_density": 20000,
+                "energy_efficiency": 0.5
+            },
+            "server_current_usage": {
+                "apps": ["Smart Grid Frequency"],
+                "cpu_cores": 128,
+                "ram_gb": 32
+            }
+        },
+        {
+            "node_id": "node_bcn",
+            "zone": "Barcelona",
+            "server_capabilities": {
+                "cpu_cores": 96,
+                "ram_gb": 256
+            },
+            "server_kpis": {
+                "latency_ms": 3,
+                "throughput_mbps": 3000,
+                "availability_percent": 99.999,
+                "packet_loss_percent": 0.001,
+                "connection_density": 50000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {
+                "apps": ["Haptic Education Lab"],
+                "cpu_cores": 48,
+                "ram_gb": 32
+            }
+        },
+        {
+            "node_id": "node_vlc",
+            "zone": "Valencia",
+            "server_capabilities": {
+                "cpu_cores": 160,
+                "ram_gb": 1024
+            },
+            "server_kpis": {
+                "latency_ms": 50,
+                "throughput_mbps": 200,
+                "availability_percent": 95.0,
+                "packet_loss_percent": 2.0,
+                "connection_density": 10000,
+                "energy_efficiency": 0
+            },
+            "server_current_usage": {
+                "apps": ["Smart Grid Balancer"],
+                "cpu_cores": 96,
+                "ram_gb": 32
+            }
+        },
+        {
+            "node_id": "node_sev",
+            "zone": "Sevilla",
+            "server_capabilities": {
+                "cpu_cores": 64,
+                "ram_gb": 128
+            },
+            "server_kpis": {
+                "latency_ms": 30,
+                "throughput_mbps": 300,
+                "availability_percent": 99.0,
+                "packet_loss_percent": 0.5,
+                "connection_density": 20000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {
+                "apps": ["HoloConference Enterprise"],
+                "cpu_cores": 64,
+                "ram_gb": 128
+            }
+        },
+        {
+            "node_id": "node_bil",
+            "zone": "Bilbao",
+            "server_capabilities": {
+                "cpu_cores": 128,
+                "ram_gb": 512
+            },
+            "server_kpis": {
+                "latency_ms": 10,
+                "throughput_mbps": 1000,
+                "availability_percent": 99.9,
+                "packet_loss_percent": 0.1,
+                "connection_density": 20000,
+                "energy_efficiency": 0.5
+            },
+            "server_current_usage": {}
+        },
+        {
+            "node_id": "node_cor",
+            "zone": "Coruña",
+            "server_capabilities": {
+                "cpu_cores": 192,
+                "ram_gb": 2048
+            },
+            "server_kpis": {
+                "latency_ms": 40,
+                "throughput_mbps": 1000,
+                "availability_percent": 98.0,
+                "packet_loss_percent": 1.0,
+                "connection_density": 10000,
+                "energy_efficiency": 0
+            },
+            "server_current_usage": {}
+        },
+        {
+            "node_id": "node_can",
+            "zone": "Canarias",
+            "server_capabilities": {
+                "cpu_cores": 144,
+                "ram_gb": 768
+            },
+            "server_kpis": {
+                "latency_ms": 15,
+                "throughput_mbps": 1500,
+                "availability_percent": 99.5,
+                "packet_loss_percent": 0.1,
+                "connection_density": 10000,
+                "energy_efficiency": 1
+            },
+            "server_current_usage": {}
+        }
+    ]
+}
