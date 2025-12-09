@@ -5,6 +5,40 @@ from hackathon_functions import gemini_api_call
 import json
 from hackathon_functions import KPIS_PREFERENCES, KPIS_ORDER_OPERAND
 
+def test_kpis_preferences():
+    """Verifica que las preferencias de KPIs están definidas correctamente como un dict por las 3 categorias, y que caga categoria sea array de 3 strings"""
+    if not isinstance(KPIS_PREFERENCES, dict):
+        pytest.fail("KPIS_PREFERENCES no es un diccionario")
+    
+    if "uRLLC" not in KPIS_PREFERENCES:
+        pytest.fail("Falta la categoría 'uRLLC' en KPIS_PREFERENCES")
+    if "eMBB" not in KPIS_PREFERENCES:
+        pytest.fail("Falta la categoría 'eMBB' en KPIS_PREFERENCES")
+    if "mMTC" not in KPIS_PREFERENCES:
+        pytest.fail("Falta la categoría 'mMTC' en KPIS_PREFERENCES")
+    
+    for category, kpis in KPIS_PREFERENCES.items():
+        if not isinstance(kpis, list):
+            pytest.fail(f"Los KPIs de la categoría '{category}' no son una lista")
+        if len(kpis) != 3:
+            pytest.fail(f"Los KPIs de la categoría '{category}' no tienen exactamente 3 elementos")
+        for kpi in kpis:
+            if not isinstance(kpi, str):
+                pytest.fail(f"El KPI '{kpi}' en la categoría '{category}' no es una cadena de texto")
+
+def test_kpis_order_operand():
+    """Verifica que KPIS_ORDER_OPERAND es un diccionario con 1 o -1 como valores, debe haber 6 KPIs definidos"""
+    if not isinstance(KPIS_ORDER_OPERAND, dict):
+        pytest.fail("KPIS_ORDER_OPERAND no es un diccionario")
+
+    if len(KPIS_ORDER_OPERAND) != 6:
+        pytest.fail(f"KPIS_ORDER_OPERAND debe tener exactamente 6 KPIs definidos, pero tiene {len(KPIS_ORDER_OPERAND)}")
+    
+    for kpi, operand in KPIS_ORDER_OPERAND.items():
+        if operand not in [1, -1]:
+            pytest.fail(f"El KPI '{kpi}' tiene un operando inválido: {operand}. Debe ser 1 o -1")
+
+
 def test_gemini_api_key_exists():
     """Verifica que existe .env GEMINI_API_KEY está definida en .env"""    
     if not os.path.isfile(".env"):
@@ -22,6 +56,14 @@ def test_gemini_call_with_tool():
     """Test que verifica que gemini_call funciona correctamente con las tools definidas, y devuelve una función SIEMPRE"""
     with open("functions.json", "r") as f:
         functions_dataset = json.load(f)
+
+    if not isinstance(functions_dataset, dict):
+        pytest.fail("functions.json no es un diccionario")
+    
+    required_functions = ["deploy_app", "migrate_app", "stop_app"]
+    for func_name in required_functions:
+        if func_name not in functions_dataset:
+            pytest.fail(f"Falta la función '{func_name}' en functions.json") 
 
     deploy_app = functions_dataset["deploy_app"]
     migrate_app = functions_dataset["migrate_app"]
