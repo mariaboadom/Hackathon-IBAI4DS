@@ -178,7 +178,7 @@ def logic_app_placement(app_name: str, apps_data: dict, edge_nodes: list, kpis_u
     return nodes_filtered[0]["node_id"] if nodes_filtered else "NO_NODES_AVAILABLE"
 
 ################################################ TASK 1: Complete Gemini 2.5 call functions ################################################
-def gemini_call(tools_list, prompt) -> dict:
+def gemini_api_call(tools_list, prompt) -> dict:
     '''You need to complete the call to Gemini 2.5 here, using the provided tools and prompt.'''
 
     # You need to create Tool object from the provided tools list
@@ -227,9 +227,9 @@ def gemini_call(tools_list, prompt) -> dict:
 
 def task_call_gemini(complete_system_prompt, deploy_app, migrate_app, stop_app):
     '''
-    You need to call gemini_call from here, with the complete_system_prompt and the three functions as tools, and return the response.
+    You need to call gemini_api_call from here, with the complete_system_prompt and the three functions as tools, and return the response.
     '''
-    # Invoke gemini_call HERE with the appropriate parameters
+    # Invoke gemini_api_call HERE with the appropriate parameters
     response = 
     return response
 
