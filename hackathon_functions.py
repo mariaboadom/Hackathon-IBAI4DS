@@ -266,7 +266,7 @@ def task_select_nodes_with_resources(edge_nodes: list, cpu_cores: int, ram_gb: i
 
 # You can add HERE whatever helper functions you consider necessary
 
-def task_generate_context_prompt(apps_dataset: dict, scenarios_dataset: dict, test_queries_dataset: dict, functions: dict, test_index: str) -> str:
+def task_generate_context_prompt(apps_dataset: dict, scenarios_dataset: dict, functions: dict, test_index: str) -> str:
     '''
     You need to generate the context prompt for Gemini 2.5 here, using whathever you consider necessary from the apps dataset, scenario nodes and test queries dataset.
     You can create helper functions if needed. Consider that this function will be called every time we execute a test, so the test_index parameter indicates which test we are executing.
