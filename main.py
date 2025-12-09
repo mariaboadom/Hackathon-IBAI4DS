@@ -93,9 +93,9 @@ if __name__ == "__main__":
         print(f"------------------------------- TEST: {test_i} -------------------------------\n")
         queries = [item["query"] for item in test_queries_dataset[test_i]]
 
-        ###################################### TASK 1: GENERATE CONTEXT PROMPT ################################################
+        ###################################### TASK: GENERATE CONTEXT PROMPT ################################################
         context_prompt = task_generate_context_prompt(apps_dataset, scenarios_dataset, test_queries_dataset, functions, test_i)
-        ####################################### END TASK 1: GENERATE CONTEXT PROMPT ################################################
+        ####################################### END TASK: GENERATE CONTEXT PROMPT ################################################
         
         #---------------------------- QUERIES LOOP: PROCESS EACH USER QUERY ------------------#
         for query in queries:
@@ -121,14 +121,14 @@ if __name__ == "__main__":
                 }
             )
 
-            ############################################### TASK 2: CALL GEMINI WITH TOOLS ################################################
+            ############################################### TASK:CALL GEMINI WITH TOOLS ################################################
             response = task_call_gemini(
                 complete_system_prompt=complete_system_prompt,
                 deploy_app=deploy_app,
                 migrate_app=migrate_app,
                 stop_app=stop_app,
             )
-            ###################################################### END TASK 2: CALL GEMINI WITH TOOLS ################################################
+            ###################################################### END TASK CALL GEMINI WITH TOOLS ################################################
 
             print(f"--- Query: {query} ---")
             print(f"Respuesta del modelo: {response} \n")
@@ -137,12 +137,12 @@ if __name__ == "__main__":
             states = []
             chosen_nodes = []
 
-            ################################## TASK 3: PROCESS FUNCTION CALLS ################################################
+            ################################## TASK:PROCESS FUNCTION CALLS ################################################
 
             for function in response["function"]:
                 state, chosen_node = task_process_function_calls(function, apps_dataset, scenarios_dataset[test_i])
             
-            ################################## END TASK 3: PROCESS FUNCTION CALLS ################################################
+            ################################## END TASK PROCESS FUNCTION CALLS ################################################
             
                 # Append individual function result
                 print(f"Resultado de la función: {state} \n")

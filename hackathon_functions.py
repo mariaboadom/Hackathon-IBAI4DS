@@ -1,7 +1,7 @@
 from google import genai
-from google.genai import types
 import os
 import dotenv
+# Add any other imports you need here
 
 dotenv.load_dotenv()
 api_key = os.getenv("GEMINI_API_KEY")
@@ -128,35 +128,28 @@ def logic_app_placement(app_name: str, apps_data: dict, edge_nodes: list, kpis_u
     if len(free_nodes) == 0:
         return "NO_NODES_AVAILABLE"
     
-    # Now, complex selection Criteria: First filter by user KPIs, then sort by app category preferences
     app_category = apps_data[app_name]["category_5G"]
     nodes_valid = free_nodes.copy()
     nodes_filtered = free_nodes.copy()
 
-    # If user provided KPIs, filter nodes first
     if len(kpis_user) > 0:
                 print("[DEBUG]: User provided KPIs:", kpis_user)
                 for kpi_name, kpi_value in kpis_user.items():
                     if kpi_name in KPIS_PREFERENCES[app_category]:                       
                         for node in nodes_valid:
-                            # For latency and packet loss, we remove nodes that exceed the max value
                             if kpi_name in ["latency_ms", "packet_loss_percent"]:
                                 if node["server_kpis"][kpi_name] > kpi_value:
                                     if node in nodes_filtered:
-                                        # If node was not already removed
                                         nodes_filtered.remove(node)
                                         print(f"[DEBUG]: Node {node['node_id']} removed for not meeting {kpi_name} <= {kpi_value}")
                             else:
-                                # For other KPIs, we remove nodes that are below the min value
                                 if node["server_kpis"][kpi_name] < kpi_value:
                                     if node in nodes_filtered:
-                                        # If node was not already removed
                                         nodes_filtered.remove(node)
                                         print(f"[DEBUG]: Node {node['node_id']} removed for not meeting {kpi_name} >= {kpi_value}")
                 if len(nodes_filtered) == 0:
                     return "NO_NODES_AVAILABLE"
 
-    # Now sort the remaining nodes per application category preferences
     print(f"[DEBUG]: Nodes valid after filtering: {[node['node_id'] for node in nodes_filtered]}")
     if app_category == "uRLLC":
             print("[DEBUG]: App category uRLLC")          
@@ -188,7 +181,7 @@ def logic_app_placement(app_name: str, apps_data: dict, edge_nodes: list, kpis_u
 def gemini_call(tools_list, prompt) -> dict:
     '''You need to complete the call to Gemini 2.5 here, using the provided tools and prompt.'''
 
-    # You need to create Tool objects from the provided tools list
+    # You need to create Tool object from the provided tools list
     tools =
 
     # Create config with tools and ensure that the model ALWAYS calls functions when needed
@@ -242,7 +235,33 @@ def task_call_gemini(complete_system_prompt, deploy_app, migrate_app, stop_app):
 
 ################################################################# END TASK 1 ###########################################################################################
 
-################################################ TASK 2: Complete context prompt generation functions ################################################
+################################################ TASK 2: Complete function call processing ################################################
+
+def task_process_function_calls(function, apps_dataset: dict, scenario_nodes: list) -> str:
+    '''You need to process each function call here, calling the appropriate function (deploy_app_func, migrate_app_func, stop_app_func) based on the function name, and return the chosen node and state.'''
+
+    # Hint: you need to call the deploy_app_func, migrate_app_func and stop_app_func functions defined above, depending on the case.
+
+    return state, chosen_node
+
+########################################################### END TASK 2 #############################################################################################
+
+########################################################## TASK 3: Complete app placement logic ##########################################################
+def task_select_nodes_with_resources(edge_nodes: list, cpu_cores: int, ram_gb: int, current_node=None) -> list:
+    '''You need to implement the logic to filter and return only the nodes that have enough CPU and RAM to host the application.'''
+
+    # You need to add HERE the logic to choose just the nodes that have enough CPU and RAM to host the application, it does not matter if the app is already deployed in any node, we consider this node too if it has enough resources. We will remove the current node later if migrating.
+
+    
+
+    # The last step is remove current node from the list if we are migrating
+    if current_node:
+        print("[DEBUG]:Current node:", current_node)
+        free_nodes = [node for node in free_nodes if node["node_id"] != current_node]
+
+    return free_nodes
+######################################################### END TASK 3 ##################################################################
+################################################ TASK 4: Complete context prompt generation functions ################################################
 
 
 # You can add HERE whatever helper functions you consider necessary
@@ -263,32 +282,5 @@ def task_generate_context_prompt(apps_dataset: dict, scenarios_dataset: dict, te
     
     return context_prompt
 
-########################################################### END TASK 2 #############################################################################################
-
-################################################ TASK 3: Complete function call processing ################################################
-
-def task_process_function_calls(function, apps_dataset: dict, scenario_nodes: list) -> str:
-    '''You need to process each function call here, calling the appropriate function (deploy_app_func, migrate_app_func, stop_app_func) based on the function name, and return the chosen node and state.'''
-
-    # Hint: you need to call the deploy_app_func, migrate_app_func and stop_app_func functions defined above, depending on the case.
-
-    return state, chosen_node
-
-########################################################### END TASK 3 #############################################################################################
-
-########################################################## TASK 4: Complete app placement logic ##########################################################
-def task_select_nodes_with_resources(edge_nodes: list, cpu_cores: int, ram_gb: int, current_node=None) -> list:
-    '''You need to implement the logic to filter and return only the nodes that have enough CPU and RAM to host the application.'''
-
-    # You need to add HERE the logic to choose just the nodes that have enough CPU and RAM to host the application, it does not matter if the app is already deployed in any node, we consider this node too if it has enough resources. We will remove the current node later if migrating.
-
-
-
-    # The last step is remove current node from the list if we are migrating
-    if current_node:
-        print("[DEBUG]:Current node:", current_node)
-        free_nodes = [node for node in free_nodes if node["node_id"] != current_node]
-
-    return free_nodes
-######################################################### END TASK 4 ##################################################################
+########################################################### END TASK 4 #############################################################################################
                 
