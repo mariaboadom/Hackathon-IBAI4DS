@@ -1,5 +1,6 @@
 import json
 import os
+import time
 
 tokens_count_total = 0
 
@@ -152,6 +153,9 @@ if __name__ == "__main__":
             # Append results to file to analyze later
             append_to_results_file(query, response, test_i, states, chosen_nodes)
             tokens_count_total += response["prompt_tokens"] + response["completion_tokens"]
+
+            # Sleep between queries to avoid rate limits
+            time.sleep(1)
 
     print("-------------------------------------------------\n")
     print("TOTAL TOKENS USED SO FAR:", tokens_count_total)
