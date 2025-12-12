@@ -1,5 +1,92 @@
 {
-  "deploy_app": {},
-  "migrate_app": {},
-  "stop_app": {}
+  "deploy_app": {
+    "name": "deploy_app",
+    "description": "Despliega una nueva aplicación o servicio. Extrae los KPIs técnicos si el usuario los menciona explícitamente",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "app_name": {
+          "type": "string",
+          "description": "Nombre de la aplicación"
+        },
+        "latency_ms": {
+          "type": "integer",
+          "description": "Latencia máxima (milisegundos)"
+        },
+        "throughput_mbps": {
+          "type": "integer",
+          "description": "Velocidad de transferencia mínima (Mbps)"
+        },
+        "availability_percent": {
+          "type": "number",
+          "description": "Porcentaje de disponibilidad requerido"
+        },
+        "connection_density": {
+          "type": "integer",
+          "description": "Número de dispositivos por km2 que deben ser soportados"
+        },
+        "packet_loss_percent": {
+          "type": "number",
+          "description": "Porcentaje máximo de pérdida de paquetes permitido"
+        },
+        "energy_efficiency": {
+          "type": "number",
+          "description": "Valor de eficiencia energética requerido. 0 (bajo) y 1 (alto)"
+        }
+      },
+      "required": ["app_name"]
+    }
+  },
+  "migrate_app": {
+    "name": "migrate_app",
+    "description": "Mueve una aplicación existente a otro nodo debido a problemas de rendimiento del nodo en el que esté desplegada, por petición del usuario o por cambio en los requisitos.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "app_name": {
+          "type": "string",
+          "description": "Nombre de la aplicación a migrar"
+        },
+        "latency_ms": {
+          "type": "integer",
+          "description": "Latencia máxima requerida en milisegundos"
+        },
+        "throughput_mbps": {
+          "type": "integer",
+          "description": "Caudal o velocidad de transferencia mínima en Mbps"
+        },
+        "availability_percent": {
+          "type": "number",
+          "description": "Porcentaje de disponibilidad o uptime requerido"
+        },
+        "connection_density": {
+          "type": "integer",
+          "description": "Número de dispositivos por km2 que deben ser soportados"
+        },
+        "packet_loss_percent": {
+          "type": "number",
+          "description": "Procentaje máximo de pérdida de paquetes permitido"
+        },
+        "energy_efficiency": {
+          "type": "number",
+          "description": "Valor de eficiencia energética requerido 0 (bajo), 0.5 (medio) y 1 (alto)"
+        }
+      },
+      "required": ["app_name"]
+    }
+  },
+  "stop_app": {
+    "name": "stop_app",
+    "description": "Detiene y elimina una aplicación activa para liberar recursos.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "app_name": {
+          "type": "string",
+          "description": "Nombre de la aplicación a detener"
+        }
+      },
+      "required": ["app_name"]
+    }
+  }
 }

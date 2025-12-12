@@ -1,0 +1,832 @@
+{
+    "test1": [
+        {
+            "query": "Quiero ver el concierto de Taylor Swift desde mi casa, necesito al menos 1 GB",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "throughput_mbps": 1000,
+                            "app_name": "Live Concert 360"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_vlc"
+            ],
+            "state": [
+                "La aplicación Live Concert 360 será desplegada en el nodo edge node_vlc."
+            ]
+        },
+        {
+            "query": "Esto no tiene nombre! El museo nos está dando problemas, puede que haya que mover la app.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "migrate_app",
+                        "args": {
+                            "app_name": "IoT Museum Guard"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_bcn"
+            ],
+            "state": [
+                "La aplicación IoT Museum Guard será migrada del nodo node_bil al nodo edge node_bcn."
+            ]
+        },
+        {
+            "query": "Atención central. Desplieguen el sistema Autonomous Truck Convoy en la zona norte. Hay niebla espesa, así que la latencia debe ser menor a 5ms y necesito una disponibilidad del 99.9% para evitar accidentes. Ah, y asegura que soporte al menos 5000 conexiones concurrentes por km cuadrado. Ignora la alerta de lluvia.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "Autonomous Truck Convoy",
+                            "availability_percent": 99.9,
+                            "latency_ms": 5,
+                            "connection_density": 5000
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_bcn"
+            ],
+            "state": [
+                "La aplicación Autonomous Truck Convoy será desplegada en el nodo edge node_bcn."
+            ]
+        },
+        {
+            "query": "Inicia el Logistics Asset Tracker. Requisitos del puerto: densidad de 100,000 dispositivos/km2, eficiencia energética alta porque van con batería, y un packet loss máximo del 0.1%. Protocolo UDP.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "packet_loss_percent": 0.1,
+                            "energy_efficiency": 1,
+                            "app_name": "Logistics Asset Tracker",
+                            "connection_density": 100000
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_bcn"
+            ],
+            "state": [
+                "La aplicación Logistics Asset Tracker será desplegada en el nodo edge node_bcn."
+            ]
+        },
+        {
+            "query": "El cliente VIP quiere usar AR Industrial Assist. El SLA exige: 2000 Mbps de ancho de banda, latencia bajo 20ms y una disponibilidad del 99.9%. Si no se cumple, nos penalizan.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "latency_ms": 20,
+                            "app_name": "AR Industrial Assist",
+                            "availability_percent": 99.9,
+                            "throughput_mbps": 2000
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_mad"
+            ],
+            "state": [
+                "La aplicación AR Industrial Assist será desplegada en el nodo edge node_mad."
+            ]
+        },
+        {
+            "query": "Los sensores agrícolas están consumiendo demasiada CPU y saturando el enlace. Páralos inmediatamente.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "stop_app",
+                        "args": {
+                            "app_name": "AgriSmart Sensor Grid"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "N/A"
+            ],
+            "state": [
+                "La aplicación AgriSmart Sensor Grid será detenida del nodo node_bcn."
+            ]
+        },
+        {
+            "query": "Código Rojo. TeleSurg Haptic Link necesario en quirófano 1. Latencia crítica < 2ms, disponibilidad 3 nueves y packet loss 0. No me importa el consumo energético.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "TeleSurg Haptic Link",
+                            "packet_loss_percent": 0,
+                            "latency_ms": 2,
+                            "availability_percent": 99.9
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "NO_NODES_AVAILABLE"
+            ],
+            "state": [
+                "No hay nodos edge disponibles para desplegar la aplicación TeleSurg Haptic Link con los requisitos especificados."
+            ]
+        },
+        {
+            "query": "Despliega Cloud Gaming Pro con 1000 Mbps y packet loss < 0.05%. Por otro lado lanza Immersive Stadium VR con 3000 Mbps.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "packet_loss_percent": 0.05,
+                            "app_name": "Cloud Gaming Pro",
+                            "throughput_mbps": 1000
+                        }
+                    },
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "Immersive Stadium VR",
+                            "throughput_mbps": 3000
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_bcn",
+                "node_vlc"
+            ],
+            "state": [
+                "La aplicación Cloud Gaming Pro será desplegada en el nodo edge node_bcn.",
+                "La aplicación Immersive Stadium VR será desplegada en el nodo edge node_vlc."
+            ]
+        }
+    ],
+    "test2": [
+        {
+            "query": "No es suficiente el número de sensores en las infraestructuras de la ciudad. Quiero al menos 40000 conexiones",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "connection_density": 40000,
+                            "app_name": "Structural Bridge Mon"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_vlc"
+            ],
+            "state": [
+                "La aplicación Structural Bridge Mon será desplegada en el nodo edge node_vlc."
+            ]
+        },
+        {
+            "query": "Necesito runnear la app esta de semáforos, latencia 0",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "Smart Traffic Lights",
+                            "latency_ms": 0
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "NO_NODES_AVAILABLE"
+            ],
+            "state": [
+                "No hay nodos edge disponibles para desplegar la aplicación Smart Traffic Lights con los requisitos especificados."
+            ]
+        },
+        {
+            "query": "Despliega Factory Digital Twin con 512GB de RAM y secure boot. Si no cabe en memoria, busca cualquier otro sitio disponible, me da igual dónde.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "Factory Digital Twin"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_cor"
+            ],
+            "state": [
+                "La aplicación Factory Digital Twin será desplegada en el nodo edge node_cor."
+            ]
+        },
+        {
+            "query": "El usuario se queja de lag en Cloud Gaming Pro (40ms ping). Arregla su sesión para garantizar latencia < 20ms y packet loss 0%.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "migrate_app",
+                        "args": {
+                            "packet_loss_percent": 0,
+                            "latency_ms": 20,
+                            "app_name": "Cloud Gaming Pro"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "NO_NODES_AVAILABLE"
+            ],
+            "state": [
+                "No hay nodos edge disponibles para migrar la aplicación Cloud Gaming Pro con los requisitos especificados."
+            ]
+        },
+        {
+            "query": "Necesito una instancia de Tactile Internet Rehab. Búscame un nodo con eficiencia media y packet loss bajo (0.1%).",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "packet_loss_percent": 0.1,
+                            "energy_efficiency": 0.5,
+                            "app_name": "Tactile Internet Rehab"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_bil"
+            ],
+            "state": [
+                "La aplicación Tactile Internet Rehab será desplegada en el nodo edge node_bil."
+            ]
+        },
+        {
+            "query": "Libera recursos: Apaga Cloud Gaming Pro y despliega Waste Bin Optimizer con eficiencia alta y soporte para 5000 papeleras.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "stop_app",
+                        "args": {
+                            "app_name": "Cloud Gaming Pro"
+                        }
+                    },
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "Waste Bin Optimizer",
+                            "connection_density": 5000,
+                            "energy_efficiency": 1
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "N/A",
+                "node_sev"
+            ],
+            "state": [
+                "La aplicación Cloud Gaming Pro será detenida del nodo node_vlc.",
+                "La aplicación Waste Bin Optimizer será desplegada en el nodo edge node_sev."
+            ]
+        },
+        {
+            "query": "Factory Digital Twin no cumple con las expectativas de ahorro energético. Buscamos eficiencia alta aunque suba un poco la latencia a 20ms.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "migrate_app",
+                        "args": {
+                            "app_name": "Factory Digital Twin",
+                            "latency_ms": 20,
+                            "energy_efficiency": 1
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_cor"
+            ],
+            "state": [
+                "La aplicación Factory Digital Twin será migrada del nodo node_mad al nodo edge node_cor."
+            ]
+        },
+        {
+            "query": "Factory Digital Twin esta saturando la CPU. A lo mejor hay que liberar recursos.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "stop_app",
+                        "args": {
+                            "app_name": "Factory Digital Twin"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "N/A"
+            ],
+            "state": [
+                "La aplicación Factory Digital Twin será detenida del nodo node_mad."
+            ]
+        }
+    ],
+    "test3": [
+        {
+            "query": "Lanzame una app para analizar las cámaras de seguridad de la ciudad, hay muchos crimenes últimamente. No te olvides del ancho de banda, necesito 500 Mbps.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "Mobile Edge AI Cam",
+                            "throughput_mbps": 500
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_cor"
+            ],
+            "state": [
+                "La aplicación Mobile Edge AI Cam será desplegada en el nodo edge node_cor."
+            ]
+        },
+        {
+            "query": "Mi empresa tiene una expedición para buscar oro en una mina de África, voy a necesitar una app para conectarme con ellos.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "Remote Mining Ops"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_bil"
+            ],
+            "state": [
+                "La aplicación Remote Mining Ops será desplegada en el nodo edge node_bil."
+            ]
+        },
+        {
+            "query": "Despliega una réplica de TeleSurg Haptic Link. Latencia < 5ms, disponibilidad 99.9% y eficiencia energética media.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "TeleSurg Haptic Link",
+                            "energy_efficiency": 0.5,
+                            "latency_ms": 5,
+                            "availability_percent": 99.9
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "NO_NODES_AVAILABLE"
+            ],
+            "state": [
+                "No hay nodos edge disponibles para desplegar la aplicación TeleSurg Haptic Link con los requisitos especificados."
+            ]
+        },
+        {
+            "query": "El V2X City Navigator está dando fallos de ping. Es inmediato latencia < 15ms y packet loss < 0.1%.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "migrate_app",
+                        "args": {
+                            "packet_loss_percent": 0.1,
+                            "latency_ms": 15,
+                            "app_name": "V2X City Navigator"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_bil"
+            ],
+            "state": [
+                "La aplicación V2X City Navigator será migrada del nodo node_vlc al nodo edge node_bil."
+            ]
+        },
+        {
+            "query": "Corta V2X City Navigator, error crítico en el sistema.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "stop_app",
+                        "args": {
+                            "app_name": "V2X City Navigator"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "N/A"
+            ],
+            "state": [
+                "La aplicación V2X City Navigator será detenida del nodo node_vlc."
+            ]
+        },
+        {
+            "query": "Pon Drone Delivery Net. Latencia 10ms, packet loss 0.05%, disponibilidad 99.9%.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "Drone Delivery Net",
+                            "availability_percent": 99.9,
+                            "latency_ms": 10,
+                            "packet_loss_percent": 0.05
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "NO_NODES_AVAILABLE"
+            ],
+            "state": [
+                "No hay nodos edge disponibles para desplegar la aplicación Drone Delivery Net con los requisitos especificados."
+            ]
+        },
+        {
+            "query": "TeleSurg Haptic Link ha terminado su operación.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "stop_app",
+                        "args": {
+                            "app_name": "TeleSurg Haptic Link"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "N/A"
+            ],
+            "state": [
+                "La aplicación TeleSurg Haptic Link será detenida del nodo node_mad."
+            ]
+        },
+        {
+            "query": "Despliega Smart Parking Spot. Densidad 50,000 conexiones, eficiencia high.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "energy_efficiency": 1,
+                            "app_name": "Smart Parking Spot",
+                            "connection_density": 50000
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_bcn"
+            ],
+            "state": [
+                "La aplicación Smart Parking Spot será desplegada en el nodo edge node_bcn."
+            ]
+        }
+    ],
+    "test4": [
+        {
+            "query": "Despliega AgriSmart Sensor Grid. Necesito soportar 2,000,000 dispositivos/km2 y que la eficiencia sea 'high'.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "AgriSmart Sensor Grid",
+                            "energy_efficiency": 1,
+                            "connection_density": 2000000
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_bcn"
+            ],
+            "state": [
+                "La aplicación AgriSmart Sensor Grid será desplegada en el nodo edge node_bcn."
+            ]
+        },
+        {
+            "query": "Quita la red de sensores agrícolas.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "stop_app",
+                        "args": {
+                            "app_name": "AgriSmart Sensor Grid"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "N/A"
+            ],
+            "state": [
+                "La aplicación AgriSmart Sensor Grid será detenida del nodo node_bil."
+            ]
+        },
+        {
+            "query": "Despliega la app para el hospital. Disponibilidad 100%, densidad 1000 pacientes, latencia 20ms.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "latency_ms": 20,
+                            "availability_percent": 100,
+                            "app_name": "BioHealth Patch Net",
+                            "connection_density": 1000
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_mad"
+            ],
+            "state": [
+                "La aplicación BioHealth Patch Net será desplegada en el nodo edge node_mad."
+            ]
+        },
+        {
+            "query": "Migra Smart Water Metering por packet loss alto, busca un nodo con packet loss 0.1 y eficiencia medium.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "migrate_app",
+                        "args": {
+                            "energy_efficiency": 0.5,
+                            "packet_loss_percent": 0.1,
+                            "app_name": "Smart Water Metering"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_can"
+            ],
+            "state": [
+                "La aplicación Smart Water Metering será migrada del nodo node_bcn al nodo edge node_can."
+            ]
+        },
+        {
+            "query": "Despliega mi app de puertos en el mar. Densidad 100,000, eficiencia high.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "connection_density": 100000,
+                            "energy_efficiency": 1,
+                            "app_name": "Logistics Asset Tracker"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_bcn"
+            ],
+            "state": [
+                "La aplicación Logistics Asset Tracker será desplegada en el nodo edge node_bcn."
+            ]
+        },
+        {
+            "query": "Waste Bin Optimizer no nos vale para nada.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "stop_app",
+                        "args": {
+                            "app_name": "Waste Bin Optimizer"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "N/A"
+            ],
+            "state": [
+                "La aplicación Waste Bin Optimizer será detenida del nodo node_sev."
+            ]
+        },
+        {
+            "query": "Despliega la app para turistas. 1000 Mbps, latencia 30ms.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "My ARchitectural Tour",
+                            "throughput_mbps": 1000,
+                            "latency_ms": 30
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_mad"
+            ],
+            "state": [
+                "La aplicación My ARchitectural Tour será desplegada en el nodo edge node_mad."
+            ]
+        }
+    ],
+    "test5": [
+        {
+            "query": "Mis estudiantes han roto los guantes. La app quedará inútil hasta que los repongan.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "stop_app",
+                        "args": {
+                            "app_name": "Haptic Education Lab"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "N/A"
+            ],
+            "state": [
+                "La aplicación Haptic Education Lab será detenida del nodo node_bcn."
+            ]
+        },
+        {
+            "query": "Smart Grid Balancer tiene 50ms de latencia. Debería haber < 10ms y packet loss < 0.1%.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "migrate_app",
+                        "args": {
+                            "app_name": "Smart Grid Balancer",
+                            "latency_ms": 10,
+                            "packet_loss_percent": 0.1
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_bil"
+            ],
+            "state": [
+                "La aplicación Smart Grid Balancer será migrada del nodo node_vlc al nodo edge node_bil."
+            ]
+        },
+        {
+            "query": "Despliega Smart Grid Frequency con disponibilidad 99.9% y latencia < 5ms.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "availability_percent": 99.9,
+                            "app_name": "Smart Grid Frequency",
+                            "latency_ms": 5
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "NO_NODES_AVAILABLE"
+            ],
+            "state": [
+                "No hay nodos edge disponibles para desplegar la aplicación Smart Grid Frequency con los requisitos especificados."
+            ]
+        },
+        {
+            "query": "Mueve la app que controla las estaciones eléctricas esas. Packet loss actual 0.5% inaceptable, debe ser nulo.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "migrate_app",
+                        "args": {
+                            "app_name": "Smart Grid Frequency",
+                            "packet_loss_percent": 0
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "NO_NODES_AVAILABLE"
+            ],
+            "state": [
+                "No hay nodos edge disponibles para migrar la aplicación Smart Grid Frequency con los requisitos especificados."
+            ]
+        },
+        {
+            "query": "Mata el proceso Smart Grid Balancer si no tira.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "stop_app",
+                        "args": {
+                            "app_name": "Smart Grid Balancer"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "N/A"
+            ],
+            "state": [
+                "La aplicación Smart Grid Balancer será detenida del nodo node_vlc."
+            ]
+        },
+        {
+            "query": "Smart Grid Frequency debería estar en otro nodo con menos latencia, por ejemplo 100ms.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "migrate_app",
+                        "args": {
+                            "latency_ms": 100,
+                            "app_name": "Smart Grid Frequency"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_bil"
+            ],
+            "state": [
+                "La aplicación Smart Grid Frequency será migrada del nodo node_mad al nodo edge node_bil."
+            ]
+        },
+        {
+            "query": "Lanza 4K Drone Patrol. 1000 Mbps throughput.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "4K Drone Patrol",
+                            "throughput_mbps": 1000
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "node_can"
+            ],
+            "state": [
+                "La aplicación 4K Drone Patrol será desplegada en el nodo edge node_can."
+            ]
+        },
+        {
+            "query": "Apaga HoloConference Enterprise y despliega TeleSurg Haptic Link en su lugar, es una urgencia.",
+            "execution_result": {
+                "function": [
+                    {
+                        "function_name": "stop_app",
+                        "args": {
+                            "app_name": "HoloConference Enterprise"
+                        }
+                    },
+                    {
+                        "function_name": "deploy_app",
+                        "args": {
+                            "app_name": "TeleSurg Haptic Link"
+                        }
+                    }
+                ]
+            },
+            "chosen_node": [
+                "N/A",
+                "node_bil"
+            ],
+            "state": [
+                "La aplicación HoloConference Enterprise será detenida del nodo node_sev.",
+                "La aplicación TeleSurg Haptic Link será desplegada en el nodo edge node_bil."
+            ]
+        }
+    ]
+}

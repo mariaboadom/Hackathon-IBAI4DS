@@ -1,7 +1,7 @@
 from google import genai
+from google.genai import types
 import os
 import dotenv
-# Add any other imports you need here
 
 dotenv.load_dotenv()
 api_key = os.getenv("GEMINI_API_KEY")
@@ -11,19 +11,21 @@ client = genai.Client(api_key=api_key)
 
 # Define KPI preferences per application category
 KPIS_PREFERENCES = {
-    "uRLLC": [],
-    "eMBB": [],
-    "mMTC": []
+    "uRLLC": ["latency_ms", "availability_percent", "packet_loss_percent"],
+
+    "eMBB": ["throughput_mbps", "packet_loss_percent", "latency_ms"],
+
+    "mMTC": ["connection_density", "energy_efficiency", "availability_percent"] 
 }
 
-# Add +1 or -1 depending on whether higher or lower values are better for each KPI
+# Add +1 if we order to prefer lower values, -1 if we prefer higher values
 KPIS_ORDER_OPERAND = {
-    "latency_ms": 0,
-    "availability_percent": 0,
-    "packet_loss_percent": 0,
-    "throughput_mbps": 0,
-    "connection_density": 0,
-    "energy_efficiency": 0
+    "latency_ms": 1,
+    "availability_percent": -1,
+    "packet_loss_percent": 1,
+    "throughput_mbps": -1,
+    "connection_density": -1,
+    "energy_efficiency": -1
 }
 
 ############################################################ END TASK 0 #############################################################
@@ -120,36 +122,49 @@ def logic_app_placement(app_name: str, apps_data: dict, edge_nodes: list, kpis_u
     if app_name not in apps_data:
         return "Aplicación no encontrada en el dataset."
     
+    # First filter nodes that meet minimum CPU/RAM requirements 
     cpu_cores = apps_data[app_name]["min_requirements"]["cpu_cores"]
-    ram_gb = apps_data[app_name]["min_requirements"]["ram_gb"]    
+    ram_gb = apps_data[app_name]["min_requirements"]["ram_gb"]
 
-    free_nodes = task_select_nodes_with_resources(edge_nodes, cpu_cores, ram_gb, current_node)    
+    free_nodes = task_select_nodes_with_resources(edge_nodes, cpu_cores, ram_gb, current_node)
+
+    # Remove current node from the list if migrating
+    if current_node:
+        print("[DEBUG]:Current node:", current_node)
+        free_nodes = [node for node in free_nodes if node["node_id"] != current_node]
 
     if len(free_nodes) == 0:
         return "NO_NODES_AVAILABLE"
     
+    # Now, complex selection Criteria: First filter by user KPIs, then sort by app category preferences
     app_category = apps_data[app_name]["category_5G"]
     nodes_valid = free_nodes.copy()
     nodes_filtered = free_nodes.copy()
 
+    # If user provided KPIs, filter nodes first
     if len(kpis_user) > 0:
                 print("[DEBUG]: User provided KPIs:", kpis_user)
                 for kpi_name, kpi_value in kpis_user.items():
                     if kpi_name in KPIS_PREFERENCES[app_category]:                       
                         for node in nodes_valid:
+                            # For latency and packet loss, we remove nodes that exceed the max value
                             if kpi_name in ["latency_ms", "packet_loss_percent"]:
                                 if node["server_kpis"][kpi_name] > kpi_value:
                                     if node in nodes_filtered:
+                                        # If node was not already removed
                                         nodes_filtered.remove(node)
                                         print(f"[DEBUG]: Node {node['node_id']} removed for not meeting {kpi_name} <= {kpi_value}")
                             else:
+                                # For other KPIs, we remove nodes that are below the min value
                                 if node["server_kpis"][kpi_name] < kpi_value:
                                     if node in nodes_filtered:
+                                        # If node was not already removed
                                         nodes_filtered.remove(node)
                                         print(f"[DEBUG]: Node {node['node_id']} removed for not meeting {kpi_name} >= {kpi_value}")
                 if len(nodes_filtered) == 0:
                     return "NO_NODES_AVAILABLE"
 
+    # Now sort the remaining nodes per application category preferences
     print(f"[DEBUG]: Nodes valid after filtering: {[node['node_id'] for node in nodes_filtered]}")
     if app_category == "uRLLC":
             print("[DEBUG]: App category uRLLC")          
@@ -178,23 +193,21 @@ def logic_app_placement(app_name: str, apps_data: dict, edge_nodes: list, kpis_u
     return nodes_filtered[0]["node_id"] if nodes_filtered else "NO_NODES_AVAILABLE"
 
 ################################################ TASK 1: Complete Gemini 2.5 call functions ################################################
-def gemini_api_call(tools_list, prompt) -> dict:
+def gemini_api_call(tools_list, prompt):
     '''You need to complete the call to Gemini 2.5 here, using the provided tools and prompt.'''
-
-    # You need to create an object from the provided tools list
-    tools =
-
-    # Create config with tools and add tool_config if needed
-    config = {
     
+    tools = types.Tool(function_declarations=tools_list)
+    config = {
+        "tools": [tools],
+        "tool_config": {"function_calling_config": {"mode": "any"}},  #yo quitaria esto
     }
-
     response = client.models.generate_content(
         model="gemini-2.5-flash-lite",
         contents=prompt,
         config=config,
     )
 
+    # Extract function calls from response
     function_calls = []
     if response.candidates:
         for candidate in response.candidates:
@@ -206,12 +219,14 @@ def gemini_api_call(tools_list, prompt) -> dict:
                             "args": dict(part.function_call.args) if part.function_call.args else {}
                         })
     
+    # Extract token usage
     prompt_tokens = 0
     output_tokens = 0
     if response.usage_metadata:
         prompt_tokens = response.usage_metadata.prompt_token_count
         output_tokens = response.usage_metadata.candidates_token_count
     
+    # Return structured result
     result = {
         "function": function_calls,
         "prompt_tokens": prompt_tokens,
@@ -225,8 +240,10 @@ def task_call_gemini(complete_system_prompt, deploy_app, migrate_app, stop_app):
     '''
     You need to call gemini_api_call from here, with the complete_system_prompt and the three functions as tools, and return the response.
     '''
-    # Invoke gemini_api_call HERE with the appropriate parameters
-    response = 
+    response = gemini_api_call(
+    prompt=complete_system_prompt,
+    tools_list=[deploy_app, migrate_app, stop_app],
+    )
     return response
 
 ################################################################# END TASK 1 ###########################################################################################
@@ -236,7 +253,25 @@ def task_call_gemini(complete_system_prompt, deploy_app, migrate_app, stop_app):
 def task_process_function_calls(function, apps_dataset: dict, scenario_nodes: list) -> str:
     '''You need to process each function call here, calling the appropriate function (deploy_app_func, migrate_app_func, stop_app_func) based on the function name, and return the chosen node and state.'''
 
-    # Hint: you need to call the deploy_app_func, migrate_app_func and stop_app_func functions defined above, depending on the case.
+    if function["function_name"] == "deploy_app":
+        app_name = function["args"]["app_name"]
+        args = function["args"]
+
+        state, chosen_node = deploy_app_func(app_name, args, apps_dataset, scenario_nodes)
+
+    elif function["function_name"] == "migrate_app":
+        args = function["args"]
+        app_name = function["args"]["app_name"]
+        state, chosen_node = migrate_app_func(app_name, args, apps_dataset, scenario_nodes)
+
+        
+    elif function["function_name"] == "stop_app":
+        args = function["args"]
+        app_name = function["args"]["app_name"] 
+        state, chosen_node = stop_app_func(app_name, scenario_nodes)
+
+    else:
+        state = "Función no reconocida."
 
     return state, chosen_node
 
@@ -245,12 +280,21 @@ def task_process_function_calls(function, apps_dataset: dict, scenario_nodes: li
 ########################################################## TASK 3: Complete app placement logic ##########################################################
 def task_select_nodes_with_resources(edge_nodes: list, cpu_cores: int, ram_gb: int, current_node=None) -> list:
     '''You need to implement the logic to filter and return only the nodes that have enough CPU and RAM to host the application.'''
+    free_nodes = []
+    for node in edge_nodes:        
+        if node["server_current_usage"] == {}:
+            if node["server_capabilities"]["cpu_cores"] >= cpu_cores and node["server_capabilities"]["ram_gb"] >= ram_gb:
+                free_nodes.append(node)
+                print(f"[DEBUG]: Node {node['node_id']} is free and meets minimum resource requirements")
+            else:
+                print(f"[DEBUG]: Node {node['node_id']} is free but does not meet minimum resource requirements")
 
-    # You need to add HERE the logic to choose just the nodes that have enough CPU and RAM to host the application
-
+        elif node["server_capabilities"]["cpu_cores"] - node["server_current_usage"]["cpu_cores"] >= cpu_cores and \
+           node["server_capabilities"]["ram_gb"] - node["server_current_usage"]["ram_gb"] >= ram_gb:
+            free_nodes.append(node)
+            print(f"[DEBUG]: Node {node['node_id']} has load and meets minimum resource requirements")
     
-
-    # The last step is to remove current node from the list if we are migrating
+     # The last step is remove current node from the list if we are migrating
     if current_node:
         print("[DEBUG]:Current node:", current_node)
         free_nodes = [node for node in free_nodes if node["node_id"] != current_node]
@@ -259,21 +303,56 @@ def task_select_nodes_with_resources(edge_nodes: list, cpu_cores: int, ram_gb: i
 ######################################################### END TASK 3 ##################################################################
 ################################################ TASK 4: Complete context prompt generation functions ################################################
 
+def get_useful_apps_info(apps: dict) -> dict:
+    '''
+    Transform apps dataset to get only name and description.
+    
+    :param apps: Apps dataset
+    :type apps: dict
+    :return: Transformed apps info, with only name and description
+    :rtype: dict
+    '''
+    apps_info = []
+    for app_name, app in apps.items():
+        app_info = {
+            "name": app_name,
+            "desc": app["description"],
+        }
+        apps_info.append(app_info)
 
-# You can add HERE whatever helper functions you consider necessary
+    return apps_info
+
+def get_useful_nodes_info(scenario_nodes: list) -> list:
+    '''
+    Transform nodes dataset to get only node_id and deployed apps.
+    
+    :param scenario_nodes: List of available edge nodes in the scenario
+    :type scenario_nodes: list
+    :return: Transformed nodes info, with only node_id and deployed apps
+    :rtype: list
+    '''
+    nodes_info = []
+    for node in scenario_nodes:
+        node_info = {
+            "node_id": node["node_id"],
+            "deployed_apps": node["server_current_usage"]["apps"] if node["server_current_usage"] != {} else [],
+        }
+        nodes_info.append(node_info)
+    return nodes_info
 
 def task_generate_context_prompt(apps_dataset: dict, scenarios_dataset: dict, functions: dict, test_index: str) -> str:
     '''
     You need to generate the context prompt for Gemini 2.5 here, using whathever you consider necessary from the apps dataset, scenario nodes and test queries dataset.
-    You can create helper functions if needed. Consider that this function will be called every time we execute a test, so the test_index parameter indicates which test we are executing.
-    '''
+    You can create helper functions if needed.    '''
 
     print(f"Generating context prompt for test: {test_index}...")
 
-    # Hint: You may reduce the initial prompt size by summarizing the datasets if needed, or selecting only the most relevant information to include in the prompt. You may also consider creating helper functions to format the datasets
-    # You can add HERE whatever code you consider necessary to generate the context prompt
+    apps_name_description = get_useful_apps_info(apps_dataset)
 
-    context_prompt = "Eres un asistente para gestionar aplicaciones en una red de nodos edge. En tu base de datos tienes informacion de los siguientes nodos edge en diferentes escenarios: " + str(scenarios_dataset) + "\n\n En las cuales se pueden desplegar este tipo de aplicaciones siguientes aplicaciones: " + str(apps_dataset) + "Las reglas a seguir para desplegar o migrar un app en orden son: \n1. La app se debe desplegar en un nodo edge que tenga suficiente capacidad de CPU y memoria para soportar la app.\n2. En caso de que existan múltiples nodos candidatos (es decir, nodos que ya han verificado tener suficiente CPU y memoria RAM libre para alojar la aplicación), debes seleccionar el nodo óptimo aplicando estrictamente las siguientes reglas de desempate según la categoría 5G de la aplicación. Para aplicaciones uRLLC (Ultra-Reliable Low Latency Communications), que son críticas y requieren respuesta inmediata, el orden de prioridad de los KPIs es: en primer lugar minimizar la latencia (latency_ms) por ser el factor más determinante, en segundo lugar maximizar la disponibilidad (availability_percent) para garantizar la fiabilidad del servicio, y en tercer lugar minimizar la pérdida de paquetes (packet_loss_percent). Para aplicaciones eMBB (Enhanced Mobile Broadband), que consumen gran ancho de banda multimedia, el orden de prioridad es: en primer lugar maximizar el throughput (throughput_mbps) siendo esencial para la transmisión de datos, en segundo lugar minimizar la pérdida de paquetes (packet_loss_percent) para evitar artefactos o pixelación, y en tercer lugar minimizar la latencia (latency_ms) para mejorar la interactividad. Finalmente, para aplicaciones mMTC (Massive Machine Type Communications), que conectan miles de dispositivos IoT, el orden de prioridad es: en primer lugar maximizar la densidad de conexión (connection_density) para soportar el volumen masivo de dispositivos, en segundo lugar maximizar la eficiencia energética (energy_efficiency) prefiriendo nodos con eficiencia 'high' sobre 'medium' o 'low', y en tercer lugar maximizar la disponibilidad (availability_percent)."
+    scenario_nodes = scenarios_dataset[test_index]
+    useful_nodes_info = get_useful_nodes_info(scenario_nodes)
+
+    context_prompt = f"Se pueden desplegar una de estas aplicaciones:"  + str(apps_name_description) 
     
     return context_prompt
 
